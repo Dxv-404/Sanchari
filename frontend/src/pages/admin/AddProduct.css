@@ -1,0 +1,151 @@
+/* AddProduct.css */
+
+.add-product-container {
+  display: flex;
+  padding: 2rem;
+  background: #f7f7f7;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.add-preview {
+  flex: 1;
+  min-width: 320px;
+  max-width: 480px;
+  position: sticky;
+  top: 90px;
+}
+
+.add-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  background: #fff;
+  padding: 2rem 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #0001;
+  font-family: 'Inter', sans-serif;
+  color: #232323;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #232323;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.9rem 1.1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  transition: border 0.2s;
+  font-family: inherit;
+  color: #232323;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #232323;
+  background: #fff;
+  outline: none;
+}
+
+.form-group.toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  color: #232323;
+}
+
+.submit-btn {
+  margin-top: 1rem;
+  padding: 0.85rem;
+  background: #232323;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: #000;
+}
+
+.admin-title {
+  font-family: 'Staatliches', cursive;
+  color: #232323;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.admin-sidebar {
+  color: #232323;
+}
+
+.sidebar-link {
+  color: #232323;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-link:hover {
+  background: #232323;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .add-product-container {
+    flex-direction: column;
+  }
+
+  .add-preview {
+    order: 2;
+  }
+
+  .add-form {
+    width: 100%;
+  }
+}
+
+.location-list {
+  margin-top: 10px;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.location-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.location-list button {
+  background: none;
+  border: none;
+  color: crimson;
+  cursor: pointer;
+  font-weight: bold;
+}

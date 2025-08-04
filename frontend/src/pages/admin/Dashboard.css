@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.admin-root {
+  display: flex;
+  background: #f7f7f7;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 188px;
+  background: #f7f7f7;
+  border-right: 1.5px solid #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: width 0.23s;
+  min-height: 100vh;
+  z-index: 10;
+}
+.admin-sidebar.collapsed { width: 62px; }
+.sidebar-menu {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 21px;
+  border-radius: 12px;
+  color: #232323;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-family: 'Inter', Arial, sans-serif;
+  transition: background 0.17s, color 0.17s;
+  gap: 15px;
+}
+.sidebar-item:hover,
+.sidebar-item.active {
+  background: #232323;
+  color: #f7f7f7;
+}
+.sidebar-icon {
+  color: #232323;   
+  transition: color 0.2s, stroke 0.2s, fill 0.2s;
+}
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item:focus .sidebar-icon {
+  color: #fff !important;   
+  stroke: #fff !important;  
+  fill: #fff !important;    
+}
+
+.sidebar-label { font-weight: 600; letter-spacing: 1px; }
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7f7f7;
+  border-bottom: 1.5px solid #e3e3e3;
+  height: 74px;
+  padding: 0 2.7vw;
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  z-index: 20;
+}
+.sidebar-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.admin-title {
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 2.15rem;
+  color: #232323;
+  letter-spacing: 2.7px;
+  text-align: center;
+  flex: 1;
+  user-select: none;
+}
+.admin-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 6px 11px;
+  background: #f7f7f7;
+  border-radius: 50%;
+  transition: border-radius 0.21s, width 0.19s, background 0.18s;
+  cursor: pointer;
+  color: #232323;
+  min-width: 40px;
+  border: none;
+  outline: none;
+  position: relative;
+}
+.admin-logout.expand {
+  background: #232323;
+  color: #fff;
+  border-radius: 24px;
+  min-width: 94px;
+  box-shadow: 0 4px 16px #0002;
+}
+.admin-logout-label {
+  opacity: 0;
+  margin-left: 5px;
+  transition: opacity 0.16s;
+  color: #fff;
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.admin-logout.expand .admin-logout-label { opacity: 1; }
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  gap: 28px;
+  padding: 36px 2.5vw 28px 2.5vw;
+}
+.product-card {
+  background: #fff;
+  border-radius: 19px;
+  box-shadow: 0 6px 24px #23232313;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 320px;
+  transition: box-shadow 0.22s, transform 0.19s;
+}
+.product-card:hover {
+  box-shadow: 0 12px 42px #23232324;
+  transform: translateY(-6px) scale(1.022);
+}
+.product-img {
+  width: 100%;
+  aspect-ratio: 1.6;
+  object-fit: cover;
+  background: #f5f5f5;
+}
+.product-body {
+  padding: 22px 19px 16px 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.62rem;
+}
+.product-title {
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 1.24rem;
+  letter-spacing: 1.1px;
+  color: #232323;
+  margin-bottom: 4px;
+}
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.product-info-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #454545;
+  font-size: 1.04rem;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.product-actions {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+.product-card:hover .product-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+.action-btn {
+  background: #f7f7f7;
+  border: none;
+  border-radius: 13px;
+  box-shadow: 0 2px 10px #23232310;
+  padding: 8px 11px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  color: #232323;
+}
+.action-btn:hover {
+  background: #232323;
+  color: #fff;
+  box-shadow: 0 4px 18px #23232325;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar { width: 56px !important; }
+  .sidebar-label { display: none; }
+  .admin-header { font-size: 1.17rem; }
+  .admin-title { font-size: 1.33rem; }
+}
+@media (max-width: 640px) {
+  .card-grid { padding: 20px 2vw 18px 2vw; }
+  .admin-header { padding: 0 1vw; }
+}
+
+/* Delete Modal Styles */
+.cd-modal-overlay {
+  position: fixed;
+  z-index: 99;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: #2323232e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cd-modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 38px 34px 26px 34px;
+  max-width: 320px;
+  box-shadow: 0 10px 36px #23232333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Staatliches', Arial, sans-serif;
+}
+.cd-modal-icon { margin-bottom: 12px; }
+.cd-modal-title {
+  font-size: 1.31rem;
+  color: #232323;
+  letter-spacing: 0.9px;
+  margin-bottom: 10px;
+  font-family: 'Staatliches', Arial, sans-serif;
+}
+.cd-modal-desc {
+  color: #3b3b3b;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1.06rem;
+  margin-bottom: 18px;
+  text-align: center;
+  font-weight: 500;
+}
+.cd-modal-actions {
+  display: flex;
+  gap: 14px;
+}
+.cd-modal-btn {
+  border: none;
+  padding: 8px 23px;
+  border-radius: 14px;
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background: #f7f7f7;
+  color: #232323;
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s;
+}
+.cd-modal-btn:hover {
+  background: #232323;
+  color: #fff;
+}
+.cd-modal-btn.danger {
+  background: #E34A4A;
+  color: #fff;
+}
+.cd-modal-btn.danger:hover {
+  background: #C62020;
+  color: #fff;
+}
+.vehicle-details-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+./* Add these to Dashboard.css at the bottom */
+
+/* Global Font Override */
+.staatlich-font {
+  font-family: 'Staatliches', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-grid-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.description-box {
+  border: 1.5px solid #232323;
+  border-radius: 12px;
+  background: #fff;
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.description-text {
+  font-family: 'Staatliches', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 960px;
+  text-align: center;
+}
+
+.detail-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.detail-card {
+  font-family: 'Staatliches', sans-serif;
+  position: relative;
+  background: #fff;
+  border: 1.5px solid #232323;
+  border-radius: 12px;
+  padding: 2.5rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.detail-card.wide {
+  grid-column: span 2;
+}
+
+.detail-icon-top {
+  position: absolute;
+  top: -24px;
+  background: #f7f7f7;
+  color: #232323 !important;
+  stroke: #232323 !important;
+  fill: #232323 !important;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #232323;
+}
+
+.detail-icon-top.large {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  font-size: 1.4rem;
+}
+
+.detail-value {
+  font-size: 1.15rem;
+  color: #232323;
+  font-weight: bold;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: -4px;
+}
+
+.step-navigation {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+.requirement-box {
+  margin-top: 1.8rem;
+  padding: 1.2rem 1.4rem;
+  border: 1.5px solid #232323;  /* black border */
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 16px #0000000a;
+}
+
+.requirement-header {
+  font-family: 'Staatliches', sans-serif;
+  margin-left: 260px;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  color: #232323;
+}
+
+.requirement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.requirement-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: #333;
+}
+
+.requirement-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #232323;
+  background: #f7f7f7;
+  border-radius: 50%;              /* ✅ round */
+  border: 2px solid #232323;       /* ✅ black outline */
+  font-size: 18px;
+}
+
+.requirement-text {
+  font-size: 0.95rem;
+}

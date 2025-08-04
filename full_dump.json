@@ -1,0 +1,390 @@
+[
+  {
+    "model": "rental.customuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$6PO2Pl0OUxuMKH9toyMevO$hUvCmAfSQeCKnAATHcQyZ3yrD5oGDncdl+vitLBSVD4=",
+      "last_login": "2025-07-10T10:36:19.135Z",
+      "is_superuser": true,
+      "username": "devkrishna",
+      "first_name": "",
+      "last_name": "",
+      "email": "devkrishna6780@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-07-10T09:58:34.408Z",
+      "groups": [],
+      "user_permissions": [],
+      "full_name": "Dev Krishna",
+      "age": 22,
+      "gender": "Male",
+      "contact_number": "+911234567890",
+      "aadhar": null,
+      "license": null,
+      "onboarded": true
+    }
+  },
+  {
+    "model": "rental.customuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$cgzr1um0xIMUyWe7euzC3n$aZfgJ1AOGe/mn6ycTiW/8TdUJ9aX8YeQ+NBlp7uT5Q0=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "testuser",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-07-10T10:33:31.109Z",
+      "groups": [],
+      "user_permissions": [],
+      "full_name": "Test User",
+      "age": 19,
+      "gender": "Other",
+      "contact_number": "+919999999999",
+      "aadhar": null,
+      "license": null,
+      "onboarded": false
+    }
+  },
+  {
+    "model": "rental.customuser",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$i30ajEIGCTMZ9OYBoGlKCM$8jZZ2KHXilwmc493LeRJqZ2aLwrn/F0Fr7o3XIS32ow=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "dxv",
+      "first_name": "",
+      "last_name": "",
+      "email": "devkrishna@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-07-11T05:24:51.008Z",
+      "groups": [],
+      "user_permissions": [],
+      "full_name": "Dxv User",
+      "age": 21,
+      "gender": "Male",
+      "contact_number": "+918888888888",
+      "aadhar": null,
+      "license": null,
+      "onboarded": false
+    }
+  },
+  {
+    "model": "rental.dealercontact",
+    "pk": 1,
+    "fields": {
+      "name": "add",
+      "phone": "656545352"
+    }
+  },
+  {
+    "model": "rental.dealercontact",
+    "pk": 2,
+    "fields": {
+      "name": "Palarivattom Auto",
+      "phone": "8590286754"
+    }
+  },
+  {
+    "model": "rental.dealercontact",
+    "pk": 3,
+    "fields": {
+      "name": "dadadda",
+      "phone": "454562532"
+    }
+  },
+  {
+    "model": "rental.dealercontact",
+    "pk": 4,
+    "fields": {
+      "name": "Aluva Automotive",
+      "phone": "9145647587"
+    }
+  },
+  {
+    "model": "rental.dealercontact",
+    "pk": 5,
+    "fields": {
+      "name": "Akash motors",
+      "phone": "7845641474"
+    }
+  },
+  {
+    "model": "rental.dealercontact",
+    "pk": 6,
+    "fields": {
+      "name": "Mahindra Autos",
+      "phone": "9619075979"
+    }
+  },
+  {
+    "model": "rental.location",
+    "pk": 1,
+    "fields": {
+      "location_name": "Metro Station",
+      "city": "Aluva",
+      "district": "Ernakulam",
+      "state": "Kerala"
+    }
+  },
+  {
+    "model": "rental.location",
+    "pk": 2,
+    "fields": {
+      "location_name": "Metro Station",
+      "city": "Aluva",
+      "district": "Ernakulam",
+      "state": "Kerala"
+    }
+  },
+  {
+    "model": "rental.location",
+    "pk": 3,
+    "fields": {
+      "location_name": "Metro Station",
+      "city": "Kalamasherry",
+      "district": "Ernakulam",
+      "state": "Kerala"
+    }
+  },
+  {
+    "model": "rental.requirement",
+    "pk": 14,
+    "fields": {
+      "vehicle": 19,
+      "icon": "helmet",
+      "text": "helmet"
+    }
+  },
+  {
+    "model": "rental.requirement",
+    "pk": 17,
+    "fields": {
+      "vehicle": 20,
+      "icon": "helmet",
+      "text": "Helmet Required"
+    }
+  },
+  {
+    "model": "rental.requirement",
+    "pk": 18,
+    "fields": {
+      "vehicle": 20,
+      "icon": "license",
+      "text": "Licence Required"
+    }
+  },
+  {
+    "model": "rental.requirement",
+    "pk": 25,
+    "fields": {
+      "vehicle": 22,
+      "icon": "helmet",
+      "text": "helmet required"
+    }
+  },
+  {
+    "model": "rental.requirement",
+    "pk": 26,
+    "fields": {
+      "vehicle": 22,
+      "icon": "helmet",
+      "text": "license required"
+    }
+  },
+  {
+    "model": "rental.vehicle",
+    "pk": 1,
+    "fields": {
+      "name": "Activa 6G",
+      "image": "vehicle_images/images_1.jpg",
+      "type": "scooter",
+      "year": 2025,
+      "condition": "new",
+      "fuel_type": "petrol",
+      "power": "120CC",
+      "description": "This is a scooter",
+      "price_daily": "600.00",
+      "price_weekly": "3780.00",
+      "price_monthly": "14400.00",
+      "city": "Angamaly",
+      "district": "Ernakulam",
+      "state": "Kerala",
+      "available": true,
+      "stock_left": 7,
+      "dealer_contact": null,
+      "location_tags": [],
+      "mileage": null,
+      "pickup_locations": [],
+      "dropoff_locations": []
+    }
+  },
+  {
+    "model": "rental.vehicle",
+    "pk": 5,
+    "fields": {
+      "name": "innova",
+      "image": "vehicle_images/image_2025-07-17_103248843.png",
+      "type": "car",
+      "year": 2017,
+      "condition": "used",
+      "fuel_type": "petrol",
+      "power": "1200CC",
+      "description": "Car",
+      "price_daily": "2500.00",
+      "price_weekly": "15750.00",
+      "price_monthly": "60000.00",
+      "city": null,
+      "district": null,
+      "state": null,
+      "available": true,
+      "stock_left": 1,
+      "dealer_contact": null,
+      "location_tags": [],
+      "mileage": null,
+      "pickup_locations": [],
+      "dropoff_locations": []
+    }
+  },
+  {
+    "model": "rental.vehicle",
+    "pk": 6,
+    "fields": {
+      "name": "BUllet 350",
+      "image": "vehicle_images/image_2025-07-17_104033094.png",
+      "type": "bike",
+      "year": 2025,
+      "condition": "used",
+      "fuel_type": "petrol",
+      "power": "350CC",
+      "description": "Bullet",
+      "price_daily": "846.00",
+      "price_weekly": "5329.80",
+      "price_monthly": "20304.00",
+      "city": null,
+      "district": null,
+      "state": null,
+      "available": true,
+      "stock_left": 1,
+      "dealer_contact": null,
+      "location_tags": [],
+      "mileage": null,
+      "pickup_locations": [],
+      "dropoff_locations": []
+    }
+  },
+  {
+    "model": "rental.vehicle",
+    "pk": 19,
+    "fields": {
+      "name": "Buggati",
+      "image": "vehicle_images/download_10_WvprE1p.jpg",
+      "type": "car",
+      "year": 2024,
+      "condition": "new",
+      "fuel_type": "petrol",
+      "power": "650CC",
+      "description": "wow good car",
+      "price_daily": "24999.00",
+      "price_weekly": "157493.70",
+      "price_monthly": "599976.00",
+      "city": null,
+      "district": null,
+      "state": null,
+      "available": true,
+      "stock_left": 1,
+      "dealer_contact": 2,
+      "location_tags": [
+        "Kochi",
+        "Vytilla",
+        "Ernakulam"
+      ],
+      "mileage": null,
+      "pickup_locations": [
+        2
+      ],
+      "dropoff_locations": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "rental.vehicle",
+    "pk": 20,
+    "fields": {
+      "name": "Himalayan",
+      "image": "vehicle_images/image_2025-07-23_143755486.png",
+      "type": "bike",
+      "year": 2022,
+      "condition": "new",
+      "fuel_type": "petrol",
+      "power": "411CC",
+      "description": "The Royal Enfield Himalayan 411 is an adventure touring motorcycle manufactured by Royal Enfield. It was first launched in early 2016 and is known for its rugged design and off-road capabilities. However, in November 2023, the Royal Enfield Himalayan 450/452, equipped with a new liquid-cooled engine, was launched. Royal Enfield is expected to discontinue the Himalayan 411 later this month (July 2025), replacing it with the Himalayan 452",
+      "price_daily": "1198.00",
+      "price_weekly": "7547.40",
+      "price_monthly": "28752.00",
+      "city": null,
+      "district": null,
+      "state": null,
+      "available": true,
+      "stock_left": 3,
+      "dealer_contact": 2,
+      "location_tags": [
+        "Kochi",
+        "Marine Drive",
+        "Vytilla"
+      ],
+      "mileage": "52.39",
+      "pickup_locations": [
+        2
+      ],
+      "dropoff_locations": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "rental.vehicle",
+    "pk": 22,
+    "fields": {
+      "name": "BMW r1250s",
+      "image": "vehicle_images/image_2025-07-23_155216348.png",
+      "type": "bike",
+      "year": 2023,
+      "condition": "new",
+      "fuel_type": "petrol",
+      "power": "650CC",
+      "description": "The BMW R 1250 RS is a powerful sports touring bike. Characterized by its two-cylinder boxer engine with BMW ShiftCam technology, it visually embodies sporty dominance and unadulterated riding pleasure. Thanks to wind and weather protection, as well as the relaxed sitting position and assistance systems, you can enjoy every corner and every mile � whether alone or with a companion. Every punch of your boxer drives you forward � every single time. On every journey and every dynamic intermediate sprint. You demand more with confidence� and the bike delivers.",
+      "price_daily": "5999.00",
+      "price_weekly": "37793.70",
+      "price_monthly": "143976.00",
+      "city": null,
+      "district": null,
+      "state": null,
+      "available": true,
+      "stock_left": 1,
+      "dealer_contact": 2,
+      "location_tags": [
+        "Kochi",
+        "Marine Drive",
+        "Ernakulam",
+        "Kalamaserry",
+        "Palarivattom",
+        "Edapally",
+        "Airport"
+      ],
+      "mileage": "38.00",
+      "pickup_locations": [
+        2
+      ],
+      "dropoff_locations": [
+        2
+      ]
+    }
+  }
+]

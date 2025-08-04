@@ -1,0 +1,43 @@
+.sanchari-loader-page {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  margin: 0;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-text {
+  font-size: 150px;
+  color: #fff;
+  transition: all 0.4s ease-in-out;
+}
+
+.title {
+  font-size: 540px;
+  font-family: 'Kshatriya', sans-serif;
+  text-align: center;
+  margin: 0;
+  color: #fff;
+  animation: moveTitleUp 3s ease forwards;
+  opacity: 0;
+}
+
+@keyframes moveTitleUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    font-size: 540px;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    font-size: 100px;
+    transform: translateY(50px);
+    opacity: 1;
+  }
+}

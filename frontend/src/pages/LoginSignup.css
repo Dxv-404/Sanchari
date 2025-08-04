@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.split-auth-root {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+}
+.split-auth-left, .split-auth-right {
+  width: 50vw;
+  min-width: 0;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.split-auth-left {
+  background: #f7f7f7;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.split-auth-right {
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+  position: relative;
+}
+.auth-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 100vh;
+}
+.welcome-header {
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 5.9rem;
+  color: #232323;
+  letter-spacing: 2.5px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 2.6rem;
+  margin-left: 30vw;
+  user-select: none;
+}
+.form-wrap {
+  width: 370px;
+  max-width: 92vw;
+  margin-left: 4vw;
+  padding: 2.2rem 2.2rem 2.1rem 2.2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 28px #0001;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  align-items: stretch;
+  animation: slideup 0.6s;
+}
+@keyframes slideup {
+  from { opacity: 0; transform: translateY(24px);}
+  to   { opacity: 1; transform: none;}
+}
+.form-switcher {
+  display: flex;
+  gap: 9px;
+  margin-bottom: 1.2rem;
+  margin-top: -0.6rem;
+}
+.form-switcher button {
+  flex: 1;
+  font-size: 1.17rem;
+  border: none;
+  background: #f7f7f7;
+  color: #555;
+  font-family: 'Staatliches', Arial, sans-serif;
+  padding: 8px 0 7px 0;
+  border-radius: 7px;
+  transition: background 0.18s, color 0.15s;
+  cursor: pointer;
+  letter-spacing: 1px;
+  outline: none;
+  border-bottom: 3.5px solid transparent;
+}
+.form-switcher button.active, .form-switcher button:disabled {
+  background: #232323;
+  color: #fff;
+  border-bottom: 3.5px solid #232323;
+}
+.login-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transition: all 0.32s cubic-bezier(.74,-0.18,.33,1.37);
+}
+.login-signup-form.slide {
+  /* Could animate left-right, here just fade in/out for clarity */
+  animation: fadeform 0.36s;
+}
+@keyframes fadeform {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.login-signup-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.08rem;
+  color: #434242;
+  font-weight: 600;
+  gap: 6px;
+}
+.login-signup-form input {
+  border: none;
+  outline: none;
+  background: #f3f3f3;
+  padding: 0.93rem 1.05rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #232323;
+  margin-top: 0.18rem;
+  transition: background 0.16s;
+  box-shadow: 0 1px 6px #0000;
+}
+.login-signup-form input:focus {
+  background: #e9e9f6;
+}
+.form-extras {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -0.2rem;
+}
+.forgot-pw {
+  color: #c5c5c5;
+  font-size: 0.98rem;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline dashed #e6e6e6 2.5px;
+  transition: color 0.17s;
+  user-select: none;
+}
+.forgot-pw:hover {
+  color: #232323;
+}
+.form-main-btn {
+  margin-top: 0.2rem;
+  width: 100%;
+  padding: 0.95rem 0;
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 1.13rem;
+  border: none;
+  border-radius: 9px;
+  background: #232323;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s;
+  box-shadow: 0 3px 12px #23232314;
+}
+.form-main-btn:disabled {
+  background: #636363;
+  cursor: not-allowed;
+}
+
+.toast {
+  position: fixed;
+  right: 2vw;
+  bottom: 4vh;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #232323;
+  font-size: 1rem;
+  font-family: 'Inter', Arial, sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 4px 22px #23232326;
+  padding: 0.85rem 1.3rem;
+  z-index: 20;
+  animation: toastIn 0.26s cubic-bezier(.61,.26,.41,1.21);
+  gap: 0.8rem;
+  border-left: 4px solid #45ad6d;
+}
+.toast.error {
+  border-left-color: #e36b6b;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(24px);}
+  to   { opacity: 1; transform: none;}
+}
+.toast-icon { display: flex; }
+.toast-msg { font-weight: 600; font-size: 1.06rem; }
+.toast-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding-left: 0.35rem;
+  transition: color 0.14s;
+}
+.toast-close:hover { color: #e36b6b; }
+
+@media (max-width: 950px) {
+  .split-auth-left, .split-auth-right { width: 100vw; min-width: 100vw;}
+  .split-auth-root { flex-direction: column; }
+  .split-auth-left { height: 52vh; }
+  .split-auth-right { height: 48vh; }
+  .welcome-header { font-size: 2rem; margin-bottom: 2rem; margin-left: 2vw; }
+  .form-wrap { margin-left: 2vw; }
+}
+@media (max-width: 540px) {
+  .form-wrap { padding: 1.2rem 0.7rem; }
+  .welcome-header { font-size: 1.33rem; }
+}
+/* Step 1 User Form */
+.step1-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+.step1-left,
+.step1-right {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.step1-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #111;
+  text-align: center;
+}
+
+.step1-subtitle {
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.step1-form-box {
+  background: white;
+  border: 2px solid black;
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.step1-avatar-placeholder {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.step1-form label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.step1-form label span {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.step1-form input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.step1-submit {
+  background-color: black;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.step1-submit:hover {
+  background-color: #333;
+}
+
+.step1-right {
+  background-color: #000;
+  overflow: hidden;
+}
+
+.step1-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

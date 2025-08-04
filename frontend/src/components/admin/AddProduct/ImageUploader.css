@@ -1,0 +1,33 @@
+/* ImageUploader.css */
+
+.image-uploader {
+  border: 2px dashed #bbb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  background: #fff;
+  color: #777;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.image-uploader:hover {
+  border-color: #232323;
+  background: #f0f0f0;
+}
+
+.image-placeholder {
+  font-size: 1rem;
+  color: #444;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 260px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
