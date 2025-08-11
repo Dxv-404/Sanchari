@@ -13,6 +13,10 @@ import OnboardingStep2 from "./pages/users/OnboardingStep2";
 import UserLanding from "./pages/users/landing/UserLanding";
 import { getMe } from "./services/api";
 
+/* 🔽 NEW: user detail pages */
+import UserVehicleDetail from "./pages/users/landing/UserVehicleDetail";   // create this
+
+
 /* =========================
    Auth & Onboarding Gates
    ========================= */
@@ -139,6 +143,7 @@ export default function App() {
           }
         />
 
+        {/* User landing */}
         <Route
           path="/user"
           element={
@@ -150,8 +155,17 @@ export default function App() {
           }
         />
 
-        {/* (Optional) Catch-all → home or /user; keep if you like */}
-        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+        {/* 🔽 NEW: user vehicle detail + flows (matches UserLanding navigate(`/user/vehicle/${id}`)) */}
+        <Route
+          path="/user/vehicle/:id"
+          element={
+            <ProtectedRoute>
+              <OnboardingGate>
+                <UserVehicleDetail />
+              </OnboardingGate>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
