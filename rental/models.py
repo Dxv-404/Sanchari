@@ -183,4 +183,13 @@ class RentalStatusLog(models.Model):
 
     def __str__(self):
         return f"{self.rental} - {self.from_status} → {self.to_status} at {self.timestamp}"
-    
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="wishlist")
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name="wishlisted_by")
+
+    class Meta:
+        unique_together = ('user', 'vehicle')
+
+    def __str__(self):
+        return f"{self.user} → {self.vehicle}"

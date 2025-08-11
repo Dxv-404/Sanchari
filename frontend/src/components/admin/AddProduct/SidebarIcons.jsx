@@ -75,47 +75,92 @@ const icons = {
     </svg>
   ),
   helmet: (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M2 12a10 10 0 0120 0H2z"/>
-    <path d="M12 2v10"/>
-  </svg>
-    ),
-    license: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="4" y="4" width="16" height="16" rx="2"/>
-        <path d="M4 9h16M10 13h6M10 17h6"/>
+      <path d="M2 12a10 10 0 0120 0H2z"/>
+      <path d="M12 2v10"/>
     </svg>
-    ),
-    fuel: (
+  ),
+  license: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="3" width="13" height="18" rx="2"/>
-        <path d="M16 7l3 3v6a2 2 0 01-2 2h-1"/>
+      <rect x="4" y="4" width="16" height="16" rx="2"/>
+      <path d="M4 9h16M10 13h6M10 17h6"/>
     </svg>
-    ),
-    insurance: (
+  ),
+  fuel: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"/>
-        <path d="M12 8v4l3 3"/>
+      <rect x="3" y="3" width="13" height="18" rx="2"/>
+      <path d="M16 7l3 3v6a2 2 0 01-2 2h-1"/>
     </svg>
-    ),
-    rules: (
+  ),
+  insurance: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="4" y="4" width="16" height="16" rx="2"/>
-        <path d="M8 9h8M8 13h6"/>
+      <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6z"/>
+      <path d="M12 8v4l3 3"/>
     </svg>
-    ),
-    rc: (
+  ),
+  rules: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M4 4h16v16H4z"/>
-        <path d="M8 4v16"/>
+      <rect x="4" y="4" width="16" height="16" rx="2"/>
+      <path d="M8 9h8M8 13h6"/>
     </svg>
-    ),
-    city: (
+  ),
+  rc: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M4 4h16v16H4z"/>
+      <path d="M8 4v16"/>
+    </svg>
+  ),
+  city: (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-        <circle cx="12" cy="9" r="2.5" />
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+      <circle cx="12" cy="9" r="2.5" />
     </svg>
-    ),
+  ),
+
+  /* 👇 ADDED icons for user sidebar & wishlist */
+  products: (
+    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.6">
+      <rect x="3" y="3" width="8" height="8" rx="2"/>
+      <rect x="13" y="3" width="8" height="8" rx="2"/>
+      <rect x="3" y="13" width="8" height="8" rx="2"/>
+      <rect x="13" y="13" width="8" height="8" rx="2"/>
+    </svg>
+  ),
+  history: (
+    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.8">
+      <path d="M3 12a9 9 0 109-9v3"/>
+      <path d="M12 7v6l4 2"/>
+    </svg>
+  ),
+  orders: (
+    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.8">
+      <path d="M4 7h16l-1.5 9a2 2 0 01-2 1.7H7.5a2 2 0 01-2-1.7L4 7z"/>
+      <path d="M7 7l1-3h8l1 3"/>
+    </svg>
+  ),
+  filter: (
+    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.8">
+      <path d="M3 5h18M6 12h12M9 19h6"/>
+    </svg>
+  ),
+  heart: (
+    <svg
+      className="heart-svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      fill="none"
+      strokeWidth="1.8"
+    >
+      {/* Modern rounded heart that fills cleanly */}
+      <path
+        d="M12.001 20.6s-6.5-4.06-8.9-7.23C1.2 10.77 2.05 7.5 4.9 6.3c1.86-.8 4.05-.27 5.4 1.1l1.7 1.74 1.7-1.74c1.35-1.37 3.54-1.9 5.4-1.1 2.86 1.2 3.7 4.47 1.8 7.07-2.4 3.17-8.9 7.23-8.9 7.23z"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  ),
+
     condition: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M9 12l2 2 4-4" />

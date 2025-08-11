@@ -37,7 +37,9 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 
-// ✅ Upload onboarding form + files to Redis
+/** =====================
+ *  🧩 OLD (kept for compatibility; no longer used in the new flow)
+ *  ===================== */
 export async function postTempOnboarding(formData) {
   return api.post("/onboarding/temp/", formData, {
     headers: {
@@ -45,10 +47,28 @@ export async function postTempOnboarding(formData) {
     },
   });
 }
-
-// ✅ Call this *after Firebase OTP is verified* to create the user
 export async function finalizeUser(session_id) {
   return api.post("/onboarding/verify-otp/", { session_id });
 }
+
+/** =====================
+ *  ✅ NEW FLOW (no OTP)
+ *  ===================== */
+export async function completeOnboarding(formData) {
+  return api.post("/onboarding/complete/", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+}
+
+export async function getMe() {
+  return api.get("/user/me/");
+}
+export const fetchVehicles = (params) => api.get("/vehicles/", { params });
+export const fetchVehicleMeta = () => api.get("/vehicles/meta/");
+
+// Wishlist
+export const fetchWishlist = () => api.get("/wishlist/");
+export const addToWishlist = (vehicle_id) => api.post("/wishlist/", { vehicle_id });
+export const removeFromWishlist = (wishlist_id) => api.delete(`/wishlist/${wishlist_id}/`);
 
 export default api;

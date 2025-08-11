@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from .models import (
     Vehicle, Location, Requirement, Rental, RentalTicket,
     ReturnRequest, DropoffChangeRequest, RenewalRequest, RentalStatusLog,
-    DealerContact
+    DealerContact,Wishlist
 )
 
 User = get_user_model()
@@ -15,7 +15,19 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_superuser']
+        fields = [
+            'id', 'username', 'email',
+            'first_name', 'last_name',
+            # ✅ custom fields needed by frontend gates
+            'full_name', 'age', 'gender', 'contact_number',
+            'profile_picture', 'aadhar_front', 'aadhar_back', 'license',
+            'no_license', 'onboarded',
+            'is_staff', 'is_superuser'
+        ]
+        read_only_fields = [
+            'profile_picture', 'aadhar_front', 'aadhar_back', 'license',
+            'is_staff', 'is_superuser'
+        ]
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,6 +43,7 @@ class DealerContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = DealerContact
         fields = '__all__'
+
 class VehicleSerializer(serializers.ModelSerializer):
     pickup_locations = serializers.PrimaryKeyRelatedField(many=True, queryset=Location.objects.all(), required=False)
     dropoff_locations = serializers.PrimaryKeyRelatedField(many=True, queryset=Location.objects.all(), required=False)
@@ -264,3 +277,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+class WishlistSerializer(serializers.ModelSerializer):
+    vehicle = VehicleSerializer(read_only=True)
+    vehicle_id = serializers.PrimaryKeyRelatedField(queryset=Vehicle.objects.all(), source="vehicle", write_only=True)
+
+    class Meta:
+        model = Wishlist
+        fields = ['id', 'vehicle', 'vehicle_id']

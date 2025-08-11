@@ -2,9 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import "../../components/users/onboarding/Onboarding.css";
 import "../../components/users/onboarding/OTPVerification.css";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase";
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { finalizeUser } from "../../services/api";
+import axios from "axios";
 
 export default function OTPVerification() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -20,23 +19,19 @@ export default function OTPVerification() {
   const fullPhone = `${country_code}${phone}`;
 
   useEffect(() => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier("recaptcha-container", {
-        size: "invisible"
-      }, auth);
-    }
+    const sendInitialOtp = async () => {
+      try {
+        await axios.post("http://127.0.0.1:8000/api/otp/send/", {
+          phone: fullPhone,
+        });
+        console.log("✅ OTP sent to", fullPhone);
+      } catch (err) {
+        console.error("❌ OTP send failed:", err);
+        setError("Failed to send OTP. Try again later.");
+      }
+    };
 
-    const appVerifier = window.recaptchaVerifier;
-
-    signInWithPhoneNumber(auth, fullPhone, appVerifier)
-      .then((confirmationResult) => {
-        window.confirmationResult = confirmationResult;
-        console.log("✅ OTP sent via Firebase");
-      })
-      .catch((err) => {
-        console.error("❌ Firebase OTP send failed:", err);
-        setError("Failed to send OTP. Please try again.");
-      });
+    sendInitialOtp();
   }, [fullPhone]);
 
   useEffect(() => {
@@ -56,6 +51,7 @@ export default function OTPVerification() {
     setOtp(newOtp);
     if (value && idx < 5) inputsRef.current[idx + 1].focus();
   };
+
   const handleKeyDown = (e, idx) => {
     if (e.key === "Backspace" && !otp[idx] && idx > 0) {
       inputsRef.current[idx - 1].focus();
@@ -79,30 +75,37 @@ export default function OTPVerification() {
     }
 
     try {
-      const result = await window.confirmationResult.confirm(fullOtp);
-      console.log("✅ Verified:", result.user.phoneNumber);
+      const res = await axios.post("http://127.0.0.1:8000/api/otp/verify/", {
+        phone: fullPhone,
+        otp: fullOtp,
+      });
 
-      await finalizeUser(session_id);
-      navigate("/dashboard");
+      if (res.data.type === "success" || res.data.message === "OTP verified success") {
+        await finalizeUser(session_id);
+        navigate("/onboarding/sanchari");
+      } else {
+        setError("Invalid OTP. Please try again.");
+      }
     } catch (err) {
-      console.error("❌ Invalid OTP or finalize failed:", err);
-      setError("Invalid OTP. Please try again.");
+      console.error("❌ OTP verification failed:", err);
+      setError("Invalid OTP or server error.");
     }
   };
 
   const handleResend = async () => {
-    setOtp(["", "", "", "", "", ""]);
-    setTimer(60);
-    setResendEnabled(false);
-    setError(null);
-
     try {
-      const appVerifier = window.recaptchaVerifier;
-      const confirmationResult = await signInWithPhoneNumber(auth, fullPhone, appVerifier);
-      window.confirmationResult = confirmationResult;
-      console.log("🔁 Resent OTP via Firebase");
+      setOtp(["", "", "", "", "", ""]);
+      setTimer(60);
+      setResendEnabled(false);
+      setError(null);
+
+      await axios.post("http://127.0.0.1:8000/api/otp/send/", {
+        phone: fullPhone,
+      });
+
+      console.log("🔁 OTP resent");
     } catch (err) {
-      console.error("Resend OTP failed:", err);
+      console.error("❌ Resend failed:", err);
       setError("Failed to resend OTP.");
     }
   };
@@ -153,8 +156,6 @@ export default function OTPVerification() {
           </button>
         </div>
       </div>
-
-      <div id="recaptcha-container" />
     </div>
   );
 }

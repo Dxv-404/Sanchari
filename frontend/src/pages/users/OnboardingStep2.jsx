@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../components/users/onboarding/Onboarding.css";
 import UploadBlock from "../../components/users/onboarding/UploadBlock";
-import { postTempOnboarding } from "../../services/api";
+// ⛔ Old import removed
+// import { postTempOnboarding } from "../../services/api";
+import { completeOnboarding } from "../../services/api";
 
 export default function OnboardingStep2() {
   const navigate = useNavigate();
@@ -45,15 +47,16 @@ export default function OnboardingStep2() {
     });
 
     try {
-      const res = await postTempOnboarding(data);
-      const session_id = res.data.session_id;
+      // ✅ Directly complete onboarding (no OTP, no temp/redis)
+      await completeOnboarding(data);
 
-      // Save session + phone for Firebase OTP screen
-      localStorage.setItem("onboarding_session_id", session_id);
-      localStorage.setItem("onboarding_phone", step1Data.contact_number);
+      // cleanup local staging
+      localStorage.removeItem("onboarding_step1");
+      localStorage.removeItem("onboarding_session_id");
+      localStorage.removeItem("onboarding_phone");
 
-      // ⛔ Removed backend OTP call: Firebase handles it in OTP page
-      navigate("/onboarding/otp");
+      // ✅ Go to user main page
+      navigate("/user");
 
     } catch (err) {
       alert("Submission failed");
@@ -101,7 +104,7 @@ export default function OnboardingStep2() {
             onClick={handleSubmit}
             disabled={!isValid}
           >
-            Continue to OTP
+            Submit Details
           </button>
         </div>
       </div>
@@ -118,3 +121,4 @@ export default function OnboardingStep2() {
     </div>
   );
 }
+

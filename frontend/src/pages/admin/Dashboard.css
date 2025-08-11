@@ -458,3 +458,369 @@
 .requirement-text {
   font-size: 0.95rem;
 }
+
+/* ===== Existing Dashboard.css content above (preserved) ===== */
+
+/* ===== New additions for user landing filter UI improvements ===== */
+
+.user-root .admin-sidebar.user-sidebar {
+  width: 62px;
+}
+.user-root .admin-sidebar.user-sidebar.user-filters-open {
+  width: 320px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-filters-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.1);
+  border-radius: 12px 0 0 12px;
+  animation: userSlideIn 240ms ease forwards;
+}
+
+@keyframes userSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.user-filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.user-filters-title {
+  font-family: 'Staatliches', Arial, sans-serif;
+  font-size: 1.4rem;
+  color: #232323;
+  letter-spacing: 1px;
+}
+
+.user-filters-close {
+  border: none;
+  background: #232323;
+  color: #fff;
+  border-radius: 12px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.user-filters-close:hover {
+  background-color: #3a3a3a;
+}
+
+/* Filter blocks */
+.user-filter-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-filter-label {
+  font-weight: 700;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #232323;
+  letter-spacing: 0.3px;
+  font-size: 1rem;
+}
+
+.user-reset {
+  border: none;
+  background: none;
+  color: #666;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.user-reset:hover {
+  color: #232323;
+}
+
+/* Inputs */
+.user-input {
+  padding: 10px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 14px;
+  background: #fff;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1rem;
+  color: #232323;
+  transition: border-color 0.2s ease;
+}
+
+.user-input:focus {
+  border-color: #232323;
+  outline: none;
+}
+
+.user-input.small {
+  width: 46%;
+}
+
+.user-to {
+  opacity: 0.7;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 8px;
+}
+
+/* Slider container */
+.user-slider-wrap {
+  position: relative;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Slider value bubble */
+.slider-value {
+  min-width: 40px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  color: #232323;
+  user-select: none;
+}
+
+/* Range sliders */
+.user-slider-wrap input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #232323 0%, #232323 50%, #d8d8d8 50%, #d8d8d8 100%);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.user-slider-wrap input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #232323;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.user-slider-wrap input[type="range"]:hover::-webkit-slider-thumb {
+  background-color: #444;
+}
+
+.user-slider-wrap input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #232323;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.user-slider-wrap input[type="range"]:hover::-moz-range-thumb {
+  background-color: #444;
+}
+
+/* Chips */
+.user-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.user-chip {
+  border: 1.5px solid #d8d8d8;
+  background: #fff;
+  border-radius: 9999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.2s ease;
+  user-select: none;
+  color: black;
+}
+
+.user-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(35,35,35,0.12);
+  border: 1.5px solid black
+}
+
+.user-chip.active {
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(35,35,35,0.28);
+}
+
+/* Example palette for multi color chips */
+.user-chip.active.c1 {
+  background-color: #232323;
+}
+
+.user-chip.active.c2 {
+  background-color: #3a3a3a;
+}
+
+.user-chip.active.c3 {
+  background-color: #555555;
+}
+
+.user-chip.active.c4 {
+  background-color: #6f6f6f;
+}
+
+.user-chip.active.c5 {
+  background-color: #8a8a8a;
+}
+
+/* Switch toggle */
+.user-switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1rem;
+  color: #232323;
+  cursor: pointer;
+  user-select: none;
+}
+
+.user-switch input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Wishlist Heart */
+.user-heart {
+  border-radius: 50%;
+  background: #f7f7f7;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  color: #232323;
+}
+
+.user-heart:hover {
+  background-color: #232323;
+  color: #fff;
+}
+
+.user-heart.active {
+  background-color: #232323;
+  color: #fff;
+}
+
+/* Sidebar icon coloring on hover */
+.sidebar-item:hover,
+.sidebar-item:focus {
+  outline: none;
+  background-color: #232323;
+  color: #fff;
+}
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item:focus .sidebar-icon {
+  stroke: #fff !important;
+  fill: #fff !important;
+  color: #fff !important;
+}
+/* --- Wishlist Heart Upgrade --- */
+.action-btn.user-heart {
+  position: relative;
+  isolation: isolate;
+  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+  will-change: transform;
+}
+
+/* hover/focus feel */
+.action-btn.user-heart:hover { transform: translateY(-1px); }
+.action-btn.user-heart:active { transform: translateY(0); }
+
+/* Heart outline to filled transition */
+.action-btn.user-heart .heart-svg path {
+  transition: fill .22s ease, stroke .22s ease, transform .22s ease;
+  fill: transparent; /* default outline */
+}
+
+/* When active, fill the heart with current color */
+.action-btn.user-heart.active .heart-svg path {
+  fill: currentColor;
+}
+
+/* Pop animation on toggle */
+.action-btn.user-heart.pop {
+  animation: heart-pop .28s ease forwards;
+}
+
+@keyframes heart-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Subtle burst confetti using ::after */
+.action-btn.user-heart.pop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: -1;
+  animation: heart-burst .45s ease forwards;
+}
+
+@keyframes heart-burst {
+  0%   { box-shadow: 0 0 0 0 rgba(35,35,35,0.22); opacity: 1; }
+  100% { box-shadow: 0 0 0 16px rgba(35,35,35,0); opacity: 0; }
+}
+
+/* Keep your previous active style, but it now also fills the heart */
+.user-heart.active {
+  background: #232323;
+  color: #fff;
+}
+
+/* optional: better keyboard focus */
+.action-btn.user-heart:focus-visible {
+  outline: 2px solid #232323;
+  outline-offset: 2px;
+  border-radius: 13px;
+}

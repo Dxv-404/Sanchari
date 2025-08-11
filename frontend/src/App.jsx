@@ -1,20 +1,72 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+
 import LoginSignup from "./pages/LoginSignup";
 import Dashboard from "./pages/admin/Dashboard";
 import AddProduct from "./pages/admin/AddProduct";
 import VehicleDetails from "./pages/admin/VehicleDetails";
 import VehicleQuickView from "./pages/admin/VehicleQuickView";
+
 import OnboardingStep1 from "./pages/users/OnboardingStep1";
 import OnboardingStep2 from "./pages/users/OnboardingStep2";
-import OTPVerification from "./pages/users/OTPVerification";
-// ✅ Protected Route Logic
+
+import UserLanding from "./pages/users/landing/UserLanding";
+import { getMe } from "./services/api";
+
+/* =========================
+   Auth & Onboarding Gates
+   ========================= */
+
+// Basic auth gate
 function ProtectedRoute({ children }) {
-  if (!localStorage.getItem("access_token")) {
-    return <Navigate to="/" />;
-  }
+  const token = localStorage.getItem("access_token");
+  if (!token) return <Navigate to="/" replace />;
   return children;
 }
+
+// Onboarding gate (keeps UI unchanged while checking)
+function OnboardingGate({ children }) {
+  const [state, setState] = useState({ loading: true, onboarded: false });
+  const location = useLocation();
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const res = await getMe();
+        if (!alive) return;
+        setState({ loading: false, onboarded: !!res.data?.onboarded });
+      } catch {
+        if (!alive) return;
+        setState({ loading: false, onboarded: false });
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [location.pathname]);
+
+  if (state.loading) return null;
+
+  const isOnboardingPath =
+    location.pathname === "/onboarding" || location.pathname === "/onboarding/step2";
+
+  // Not onboarded → force to onboarding
+  if (!state.onboarded && !isOnboardingPath) {
+    return <Navigate to="/onboarding" replace />;
+  }
+
+  // Already onboarded but trying to visit onboarding → send to /user
+  if (state.onboarded && isOnboardingPath) {
+    return <Navigate to="/user" replace />;
+  }
+
+  return children;
+}
+
+/* =========================
+          App
+   ========================= */
 
 export default function App() {
   return (
@@ -28,7 +80,9 @@ export default function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <OnboardingGate>
+                <Dashboard />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
@@ -36,7 +90,9 @@ export default function App() {
           path="/dashboard/add"
           element={
             <ProtectedRoute>
-              <AddProduct />
+              <OnboardingGate>
+                <AddProduct />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
@@ -44,7 +100,9 @@ export default function App() {
           path="/dashboard/vehicle/:id/details"
           element={
             <ProtectedRoute>
-              <VehicleDetails />
+              <OnboardingGate>
+                <VehicleDetails />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
@@ -52,15 +110,21 @@ export default function App() {
           path="/dashboard/vehicle/:id/preview"
           element={
             <ProtectedRoute>
-              <VehicleQuickView />
+              <OnboardingGate>
+                <VehicleQuickView />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
+
+        {/* User Onboarding */}
         <Route
           path="/onboarding"
           element={
             <ProtectedRoute>
-              <OnboardingStep1 />
+              <OnboardingGate>
+                <OnboardingStep1 />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
@@ -68,18 +132,26 @@ export default function App() {
           path="/onboarding/step2"
           element={
             <ProtectedRoute>
-              <OnboardingStep2 />
+              <OnboardingGate>
+                <OnboardingStep2 />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
+
         <Route
-          path="/onboarding/otp"
+          path="/user"
           element={
             <ProtectedRoute>
-              <OTPVerification />
+              <OnboardingGate>
+                <UserLanding />
+              </OnboardingGate>
             </ProtectedRoute>
           }
         />
+
+        {/* (Optional) Catch-all → home or /user; keep if you like */}
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
     </Router>
   );
